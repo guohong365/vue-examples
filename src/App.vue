@@ -3,11 +3,11 @@
     <title-bar title="昆明市交运集团大数据分析系统" />
     <nav-bar
       ref="navbar"
-      @nav-selected="tabChanged"
+      @nav-selected="onNavChanged"
       :items="navItems"
-      :init="1"
+      :selectedItem="current"
     />
-    <main-tab ref="tabs" />
+    <main-tab ref="tabs" :activePage="current" />
   </div>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
   name: "App",
   data() {
     return {
-      home: () => this.$refs.navbar.current,
+      current: 1,
       navItems: [
         { id: 0, position: "left", text: "经营情况总览" },
         { id: 1, position: "left", text: "各地经营状况" },
@@ -28,12 +28,11 @@ export default {
     };
   },
   mounted() {
-    this.$refs.tabs.activePage(0);
+    this.current = 0;
   },
   methods: {
-    tabChanged(from, to) {
-      console.log(`switch tab from: [${from}] to: [${to}]`);
-      this.$refs.tabs.activePage(to);
+    onNavChanged(to) {
+      this.current = to;
     }
   },
   components: { TitleBar, NavBar, MainTab }

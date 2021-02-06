@@ -1,5 +1,5 @@
 <template>
-  <li :class="[position, active]" @click="switchToMe" v-text="text"></li>
+  <li :class="[position, active]" @click="onClicked" v-text="text"></li>
 </template>
 <script>
 export default {
@@ -7,17 +7,16 @@ export default {
   props: {
     id: { type: Number, reuqired: true },
     position: { type: String, default: "left", required: false },
-    text: { type: String, required: true }
+    text: { type: String, required: true },
+    selectedItem: { type: String, required: true, default: -1 }
   },
-  data() {
-    return { active: false };
+  computed: {
+    active: function() {
+      return this.selectedItem == this.id ? "active" : "";
+    }
   },
   methods: {
-    setActive(isActive) {
-      this.active = isActive ? "active" : "";
-    },
-    switchToMe() {
-      console.info(`in NavItem : clicked [${this.id},${this.text}]`);
+    onClicked() {
       this.$emit("item-clicked", this.id);
     }
   }

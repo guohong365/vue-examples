@@ -32,9 +32,17 @@ import HistoryChart from "../HistoryChart";
 import RankTable from "../RankTable";
 export default {
   name: "Overview",
+  props: {
+    id: Number,
+    activePage: Number
+  },
+  computed: {
+    actived() {
+      return this.activePage == this.id;
+    }
+  },
   data() {
     return {
-      actived: false,
       tables: [
         {
           height: "50%",

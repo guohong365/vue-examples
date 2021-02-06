@@ -1,5 +1,8 @@
 <template>
-  <div :class="['company-selector-wrapper', selected ? 'active' : '']">
+  <div
+    :class="['company-selector-wrapper', selected ? 'active' : '']"
+    @click="onClicked"
+  >
     <div class="company-selector">
       <div v-text="name"></div>
     </div>
@@ -9,12 +12,18 @@
 export default {
   name: "CompanyItem",
   props: {
-    name: String
+    name: { type: String, required: true },
+    selectedItem: { type: String, required: true }
   },
-  data() {
-    return {
-      selected: false
-    };
+  computed: {
+    selected: function() {
+      return this.name === this.selectedItem;
+    }
+  },
+  methods: {
+    onClicked() {
+      this.$emit("on-selected", this.name);
+    }
   }
 };
 </script>

@@ -1,9 +1,23 @@
 <template>
   <div class="page-tabs">
-    <overview ref="overview" :show="current == 0"></overview>
-    <companies-view ref="companies" :show="current == 1"></companies-view>
-    <compare-view ref="compare" v-show="current == 2"></compare-view>
-    <prediction-view ref="predicton" v-show="current == 3"></prediction-view>
+    <overview ref="overview" :activePage="activePage" :id="0"></overview>
+    <companies-view
+      ref="companies"
+      :activePage="activePage"
+      :id="1"
+    ></companies-view>
+    <compare-view
+      ref="compare"
+      v-show="current == 2"
+      :companies="compaies"
+      :activePage="activePage"
+      :id="2"
+    ></compare-view>
+    <prediction-view
+      ref="predicton"
+      :activePage="activePage"
+      :id="3"
+    ></prediction-view>
   </div>
 </template>
 <script>
@@ -15,33 +29,16 @@ import PredictionView from "./PredictionView/PredictionView.vue";
 export default {
   name: "TabCtrl",
   props: {
-    current: { type: Number, required: false, default: 0 }
-  },
-  mounted() {
-    this.activePage(0);
+    activePage: { type: Number, required: true, default: 0 }
   },
   data() {
     return {
-      pages: () => {
-        this.$refs.overview,
-          this.$refs.compaies,
-          this.$refs.compare,
-          this.$refs.prediction;
-      }
+      compaies: []
     };
   },
-
   methods: {
-    activePage(pageIndex) {
-      console.log(this.pages());
-      this.pages.forEach(function(page, index) {
-        if (pageIndex == index) {
-          page.acticed = true;
-          this.current = pageIndex;
-        } else {
-          page.acticed = false;
-        }
-      });
+    selectPage(pageIndex) {
+      this.activePage = pageIndex;
     }
   },
   components: {

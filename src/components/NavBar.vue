@@ -6,7 +6,8 @@
         v-for="item in items"
         :key="item.id"
         v-bind="item"
-        v-on:item-clicked="itemClicked($event, key)"
+        v-on:item-clicked="selectItem(item.id)"
+        :selectedItem="selectedItem"
       />
     </ul>
   </div>
@@ -16,46 +17,13 @@ import NavItem from "./NavItem";
 export default {
   name: "NavBar",
   props: {
-    init: { type: Number, default: 0, required: false },
+    selectedItem: { type: Number, default: 0, required: false },
     items: { type: Array, default: () => [] }
   },
-  data() {
-    return {
-      current: 0
-    };
-  },
-  mounted() {
-    this.current = 0;
-    this.$refs.navItems.forEach(function(item, index) {
-      if (index == 0) {
-        item.setActive(true);
-      } else {
-        item.setActive(false);
-      }
-    });
-  },
   methods: {
-    active(index, sendToParent) {
-      if (this.current != index && this.items[index]) {
-        let from = -1;
-        let _this = this;
-        this.items.forEach(function(item) {
-          if (item.id == _this.current) {
-            from = item.id;
-          }
-        });
-        this.current = index;
-        if (from >= 0) {
-          this.$refs.navItems[from].setActive(false);
-        }
-        this.$refs.navItems[this.current].setActive(true);
-        if (sendToParent) {
-          this.$emit("nav-selected", from, index);
-        }
-      }
-    },
-    itemClicked(selected) {
-      this.active(selected, true);
+    selectItem(selected) {
+      this.selectedItem = selected;
+      this.$emit("nav-selected", selected);
     }
   },
   components: { NavItem }
