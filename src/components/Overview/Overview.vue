@@ -30,6 +30,7 @@ import Summary from "./Summary.vue";
 import MapChart from "./MapChart";
 import HistoryChart from "../HistoryChart";
 import RankTable from "../RankTable";
+
 export default {
   name: "Overview",
   props: {

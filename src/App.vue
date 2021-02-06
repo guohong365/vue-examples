@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar title="昆明市交运集团大数据分析系统" />
+    <page-title-bar title="昆明市交运集团大数据分析系统" />
     <nav-bar
       ref="navbar"
       @nav-selected="onNavChanged"
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import TitleBar from "./components/TitleBar.vue";
+import PageTitleBar from "./components/PageTitleBar.vue";
 import NavBar from "./components/NavBar.vue";
 import MainTab from "./components/TabCtrl.vue";
 export default {
@@ -22,8 +22,8 @@ export default {
       navItems: [
         { id: 0, position: "left", text: "经营情况总览" },
         { id: 1, position: "left", text: "各地经营状况" },
-        { id: 2, position: "right", text: "经营预测" },
-        { id: 3, position: "right", text: "对比分析" }
+        { id: 3, position: "right", text: "经营预测" },
+        { id: 2, position: "right", text: "对比分析" }
       ]
     };
   },
@@ -35,7 +35,7 @@ export default {
       this.current = to;
     }
   },
-  components: { TitleBar, NavBar, MainTab }
+  components: { PageTitleBar, NavBar, MainTab }
 };
 </script>
 <style lang="stylus">

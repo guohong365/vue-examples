@@ -8,7 +8,7 @@ export default {
     id: { type: Number, reuqired: true },
     position: { type: String, default: "left", required: false },
     text: { type: String, required: true },
-    selectedItem: { type: String, required: true, default: -1 }
+    selectedItem: { type: Number, required: true, default: -1 }
   },
   computed: {
     active: function() {

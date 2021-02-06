@@ -5,7 +5,7 @@
 </template>
 
 <script>
-export default { name: "TitleBar", props: { title: String } };
+export default { name: "PageTitleBar", props: { title: String } };
 </script>
 
 <style lang="stylus" scoped>

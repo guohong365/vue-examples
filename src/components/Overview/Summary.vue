@@ -1,5 +1,5 @@
 <template>
-  <div class="thin-border" :style="'height:' + height + ';'">
+  <div class="thin-border" :style="height ? { height: height } : {}">
     <div class="thick-border">
       <div class="sub-title-box">
         <div class="sub-title">收入</div>

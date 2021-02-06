@@ -8,7 +8,6 @@
     ></companies-view>
     <compare-view
       ref="compare"
-      v-show="current == 2"
       :companies="compaies"
       :activePage="activePage"
       :id="2"
