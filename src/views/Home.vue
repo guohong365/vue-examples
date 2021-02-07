@@ -5,6 +5,6 @@
 </template>
 
 <script>
-import Header from "@/components/Title.vue"; export default { name: "Home",
-components: { Header } };
+import Header from "@/components/Title.vue";
+export default { name: "Home", components: { Header } };
 </script>

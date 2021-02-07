@@ -1,5 +1,6 @@
 <template>
   <div>
+    <full-screen-switch />
     <page-title-bar title="昆明市交运集团大数据分析系统" />
     <nav-bar
       ref="navbar"
@@ -14,6 +15,7 @@
 import PageTitleBar from "./components/PageTitleBar.vue";
 import NavBar from "./components/NavBar.vue";
 import MainTab from "./components/TabCtrl.vue";
+import FullScreenSwitch from "./components/FullScreenSwitch.vue";
 export default {
   name: "App",
   data() {
@@ -35,7 +37,7 @@ export default {
       this.current = to;
     }
   },
-  components: { PageTitleBar, NavBar, MainTab }
+  components: { PageTitleBar, NavBar, MainTab, FullScreenSwitch }
 };
 </script>
 <style lang="stylus">
